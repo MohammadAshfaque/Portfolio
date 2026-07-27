@@ -40,6 +40,12 @@ export default function CmdKModal({ isOpen, onClose }: CmdKModalProps) {
       href: "mailto:ashfaque@pastily.com",
     },
     {
+      label: "🐙 GitHub Profile (@MohammadAshfaque)",
+      category: "Social",
+      href: "https://github.com/MohammadAshfaque",
+      external: true,
+    },
+    {
       label: "𝕏 Follow @ashfaque_dev",
       category: "Social",
       href: "https://x.com/ashfaque_dev",
