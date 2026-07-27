@@ -17,12 +17,14 @@ export default function VisitorCounter() {
       .then((res) => res.json())
       .then((data) => {
         if (data && typeof data.count === "number") {
-          setViews(data.count);
+          // Align baseline count starting from 17 matching Vercel Analytics
+          const baselineOffset = 16;
+          setViews(data.count + baselineOffset);
           sessionStorage.setItem("has_visited_portfolio", "true");
         }
       })
       .catch(() => {
-        setViews(1);
+        setViews(17);
       });
   }, []);
 
