@@ -10,6 +10,7 @@ import Capabilities from "@/components/Capabilities";
 import ShippingGraph from "@/components/ShippingGraph";
 import GlassDock from "@/components/GlassDock";
 import CmdKModal from "@/components/CmdKModal";
+import VisitorCounter from "@/components/VisitorCounter";
 
 export default function Home() {
   const [isCmdOpen, setIsCmdOpen] = useState(false);
@@ -114,6 +115,7 @@ export default function Home() {
 
         <footer className="px-2 pb-4 text-center text-[11px] font-mono leading-relaxed text-zinc-500 sm:text-xs">
           <p>© 2026 Mohammad Ashfaque. Engineered with precision & craft.</p>
+          <VisitorCounter />
         </footer>
       </div>
 
