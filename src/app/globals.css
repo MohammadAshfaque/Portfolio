@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #070709;
+    color: #e0e0e0;
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Conic Beam Card Styles */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-beam {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+.beam-border {
+  position: relative;
+  border-radius: 1rem;
+}
+
+.beam-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.05rem;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.8) 55%,
+    rgba(255, 255, 255, 0.3) 60%,
+    transparent 70%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+  animation: spin-beam 6s linear infinite;
+  transition: opacity 0.3s ease;
+}
+
+.beam-border:hover::before {
+  opacity: 1;
+}
+
+/* Glassmorphism Dock */
+.glass-dock {
+  background: rgba(18, 18, 21, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dock-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  color: #a0a0a0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dock-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* Skill Chip Styling - Matches siddz.com tech pills */
+.skill-chip {
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem;
+  background-color: #121215;
+  border: 1px solid #27272a;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #d4d4d8;
+  transition: all 0.2s ease;
+}
+
+.skill-chip:hover {
+  border-color: #52525b;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+.skill-tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform-origin: center center;
+  box-shadow: 0 16px 34px -30px rgba(0, 0, 0, 0.95);
+}
+
+@media (hover: none) {
+  .skill-tilt-card {
+    transform: none !important;
+  }
+}
+.skill-corner-mark {
+  color: var(--mark-color);
+  opacity: 0.38;
+  transition: opacity 160ms ease;
+}
+
+.skill-corner-mark:hover {
+  opacity: 0.68;
+}
+
+.dock-lamp-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.dock-lamp-btn::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.22rem;
+  width: 1.65rem;
+  height: 0.22rem;
+  transform: translateX(-50%) scaleX(0.36);
+  border-radius: 9999px;
+  background: #f4f4f5;
+  opacity: 0;
+  box-shadow: 0 0 14px rgba(244, 244, 245, 0.72);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dock-lamp-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.42rem;
+  width: 1.85rem;
+  height: 1.85rem;
+  transform: translateX(-50%) scaleY(0.82);
+  transform-origin: top center;
+  background: linear-gradient(180deg, rgba(244, 244, 245, 0.42), rgba(244, 244, 245, 0.16) 42%, transparent 86%);
+  clip-path: polygon(38% 0, 62% 0, 90% 100%, 10% 100%);
+  opacity: 0;
+  filter: blur(0.5px);
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dock-lamp-btn.is-lit {
+  color: #ffffff;
+  background: transparent;
+  transform: none;
+}
+
+.dock-lamp-btn.is-lit::before {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
+}
+
+.dock-lamp-btn.is-lit::after {
+  opacity: 1;
+  transform: translateX(-50%) scaleY(1);
+}
+
+@media (max-width: 420px) {
+  .glass-dock {
+    max-width: calc(100vw - 0.75rem);
+  }
+
+  .dock-btn {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
+
+  .dock-lamp-btn::before {
+    top: 0.2rem;
+    width: 1.35rem;
+    height: 0.18rem;
+  }
+
+  .dock-lamp-btn::after {
+    top: 0.36rem;
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+
+  .skill-chip {
+    font-size: 0.68rem;
+    padding: 0.22rem 0.5rem;
+  }
+}
