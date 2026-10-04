@@ -20,8 +20,8 @@ const PRODUCTS: Product[] = [
     status: "Sold",
   },
   {
-    name: "Next apps",
-    tagline: "More apps are in progress and shipping soon.",
+    name: "Mac apps",
+    tagline: "Building native macOS apps in Swift. Coming soon.",
     status: "Building",
   },
 ];
@@ -36,7 +36,7 @@ export default function Products() {
           Apps I've Built
         </h2>
         <span className="font-mono text-xs text-zinc-500">
-          {sold.toString().padStart(2, "0")} sold · more in progress
+          {sold.toString().padStart(2, "0")} sold · Mac apps in progress
         </span>
       </div>
 

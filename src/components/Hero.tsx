@@ -22,7 +22,7 @@ export default function Hero() {
 
   const statuses = [
     { label: "Available for Remote & Contract", color: "bg-emerald-500", ping: "bg-emerald-400" },
-    { label: "Shipping new apps", color: "bg-amber-500", ping: "bg-amber-400" },
+    { label: "Building Mac apps", color: "bg-amber-500", ping: "bg-amber-400" },
     { label: "Deep Focus Engineering Mode", color: "bg-cyan-500", ping: "bg-cyan-400" },
   ];
 
@@ -235,7 +235,16 @@ export default function Hero() {
         <p className="text-[#b2b2b2] dark:text-[#a0a0a0] font-sans font-[450] leading-[1.85] text-[13.5px] sm:text-[15px] mb-8">
           I build full-stack web applications, mobile apps (React Native & Expo), and native desktop products end-to-end, obsessing over small details that make software feel right to use. Creator of{" "}
           <span className="text-zinc-200 font-medium">Pastily</span>{" "}
-          (built with Rust & Tauri, sold in October). Now shipping more apps. Currently engineering with{" "}
+          (built with Rust & Tauri, sold in October). Now building native Mac apps in Swift. Currently engineering with{" "}
+          <a
+            href="https://developer.apple.com/swift/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-200 hover:underline underline-offset-[2px] decoration-zinc-600 font-medium"
+          >
+            Swift
+          </a>
+          ,{" "}
           <a
             href="https://reactnative.dev/"
             target="_blank"
