@@ -17,7 +17,7 @@ const geistMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Mohammad Ashfaque — Indie Developer & Design Engineer",
   description:
-    "Portfolio of Mohammad Ashfaque, Indie Developer & Design Engineer building real products like Pastily. Full-Stack, React Native, Tauri/Rust & AI Specialist.",
+    "Portfolio of Mohammad Ashfaque, Indie Developer & Design Engineer building and shipping real apps (Pastily, sold). Full-Stack, React Native, Tauri/Rust & AI Specialist.",
 };
 
 export default function RootLayout({

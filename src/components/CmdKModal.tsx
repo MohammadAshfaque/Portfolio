@@ -30,7 +30,7 @@ export default function CmdKModal({ isOpen, onClose }: CmdKModalProps) {
 
   const commands = [
     {
-      label: "🚀 Explore Pastily Desktop App",
+      label: "🚀 See My Apps",
       category: "Product",
       href: "#product",
     },

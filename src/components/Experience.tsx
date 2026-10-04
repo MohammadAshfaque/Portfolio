@@ -6,11 +6,11 @@ export default function Experience() {
   const experiences = [
     {
       title: "Indie Developer & Founder",
-      company: "Pastily",
-      period: "2024 — Present",
+      company: "Indie Apps",
+      period: "2026 — Present",
       type: "Product",
       description:
-        "Architecting and shipping end-to-end consumer software. Built Pastily using Rust, Tauri, SvelteKit, and TypeScript to solve real daily workflow bottlenecks.",
+        "Started Pastily in July and sold it in October. It was a native clipboard manager built with Rust, Tauri, SvelteKit, and TypeScript. More apps are in progress and shipping now.",
     },
     {
       title: "AI & LLM Trainer / Evaluator",
