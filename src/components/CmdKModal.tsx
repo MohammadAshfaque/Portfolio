@@ -35,11 +35,6 @@ export default function CmdKModal({ isOpen, onClose }: CmdKModalProps) {
       href: "#product",
     },
     {
-      label: "✉️ Send Email (ashfaque@pastily.com)",
-      category: "Contact",
-      href: "mailto:ashfaque@pastily.com",
-    },
-    {
       label: "🐙 GitHub Profile (@MohammadAshfaque)",
       category: "Social",
       href: "https://github.com/MohammadAshfaque",
