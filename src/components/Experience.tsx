@@ -10,7 +10,7 @@ export default function Experience() {
       period: "2026 — Present",
       type: "Product",
       description:
-        "Started Pastily in July and sold it in October. It was a native clipboard manager built with Rust, Tauri, SvelteKit, and TypeScript. More apps are in progress and shipping now.",
+        "Started Pastily in July and sold it in October. It was a native clipboard manager built with Rust, Tauri, SvelteKit, and TypeScript. Now building native Mac apps in Swift.",
     },
     {
       title: "AI & LLM Trainer / Evaluator",
