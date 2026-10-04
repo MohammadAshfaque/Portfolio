@@ -91,15 +91,7 @@ export default function Home() {
                />
              </svg>
              {/* 2-Column Symmetric Grid */}
-             <div className="relative z-10 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8">
-                <div className="flex justify-center sm:justify-end">
-                   <a href="mailto:ashfaque@pastily.com" className="inline-block w-full max-w-full rounded-2xl bg-zinc-950 px-0 py-1 sm:w-auto sm:px-3">
-                      <div className="w-full rounded-xl border border-zinc-800 bg-zinc-900/90 px-4 py-3 text-center text-xs font-medium text-zinc-300 shadow-md transition-all hover:border-zinc-500 hover:text-white sm:w-auto sm:px-5 sm:text-sm">
-                         ashfaque@pastily.com
-                      </div>
-                   </a>
-                </div>
-
+             <div className="relative z-10 flex w-full justify-center">
                 <div className="flex justify-center sm:justify-start">
                    <a href="https://x.com/ashfaque_dev" target="_blank" rel="noopener noreferrer" className="inline-block w-full max-w-full rounded-2xl bg-zinc-950 px-0 py-1 sm:w-auto sm:px-3">
                       <div className="w-full rounded-xl border border-zinc-800 bg-zinc-900/90 px-4 py-3 text-center text-xs font-medium text-zinc-300 shadow-md transition-all hover:border-zinc-500 hover:text-white sm:w-auto sm:px-5 sm:text-sm">

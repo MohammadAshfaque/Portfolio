@@ -3,12 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { MapPin, Mail, ArrowRight, Check, Copy, RefreshCw } from "lucide-react";
+import { MapPin, ArrowRight, RefreshCw } from "lucide-react";
 import RealTimeAge from "./RealTimeAge";
 
 export default function Hero() {
   const [tooltip, setTooltip] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
   const [statusIndex, setStatusIndex] = useState(0);
   const [showStatusToast, setShowStatusToast] = useState(false);
@@ -23,7 +22,7 @@ export default function Hero() {
 
   const statuses = [
     { label: "Available for Remote & Contract", color: "bg-emerald-500", ping: "bg-emerald-400" },
-    { label: "Building Pastily Desktop App", color: "bg-amber-500", ping: "bg-amber-400" },
+    { label: "Shipping new apps", color: "bg-amber-500", ping: "bg-amber-400" },
     { label: "Deep Focus Engineering Mode", color: "bg-cyan-500", ping: "bg-cyan-400" },
   ];
 
@@ -48,13 +47,6 @@ export default function Hero() {
     y.set(0);
   };
 
-  // Copy Email Micro-interaction
-  const copyEmail = () => {
-    navigator.clipboard.writeText("ashfaque@pastily.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2400);
-  };
-
   // Cycle Roles Automatically
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,16 +55,6 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [roles.length]);
 
-  // Keyboard shortcut listener ('c' to copy email)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === "c" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) {
-        copyEmail();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   const socialLinks = [
     {
@@ -90,16 +72,6 @@ export default function Hero() {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-        </svg>
-      ),
-    },
-    {
-      name: "Email",
-      href: "mailto:ashfaque@pastily.com",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect width="20" height="16" x="2" y="4" rx="2" />
-          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
         </svg>
       ),
     },
@@ -127,25 +99,6 @@ export default function Hero() {
 
   return (
     <section id="hero" className="mb-14 relative">
-      {/* Toast Notification Micro-Interaction for Clipboard Copy */}
-      <AnimatePresence>
-        {copied && (
-          <div className="fixed top-4 sm:top-6 inset-x-0 z-50 pointer-events-none flex justify-center px-4">
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 450, damping: 28 }}
-              className="pointer-events-auto flex items-center gap-2 rounded-full border border-emerald-500/40 bg-zinc-900/95 px-3.5 py-2 text-[11px] sm:text-xs font-mono text-emerald-400 shadow-[0_10px_35px_-5px_rgba(16,185,129,0.3)] backdrop-blur-xl max-w-full"
-            >
-              <Check className="size-3.5 shrink-0 text-emerald-400" />
-              <span className="hidden sm:inline truncate">Copied ashfaque@pastily.com to clipboard!</span>
-              <span className="sm:hidden truncate">Copied ashfaque@pastily.com</span>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -276,58 +229,13 @@ export default function Hero() {
             </AnimatePresence>
           </div>
 
-          <motion.button
-            whileHover={{ y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={copyEmail}
-            className={`inline-flex min-w-[96px] sm:min-w-[104px] items-center justify-center rounded-full border px-3 py-1 sm:py-1.5 font-mono text-center transition-colors cursor-pointer ${
-              copied
-                ? "border-emerald-500/30 bg-emerald-950/40 text-emerald-300"
-                : "border-zinc-800 bg-zinc-950/70 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
-            }`}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {copied ? (
-                <motion.div
-                  key="copied-state"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.15 }}
-                  className="inline-flex items-center gap-1.5"
-                >
-                  <Check className="size-3.5 shrink-0 text-emerald-400" />
-                  <span>copied</span>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="hello-state"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.15 }}
-                  className="inline-flex items-center gap-1.5"
-                >
-                  <Mail className="size-3.5 shrink-0 text-zinc-500" />
-                  <span>say hello</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
         </div>
 
         {/* Bio Paragraph */}
         <p className="text-[#b2b2b2] dark:text-[#a0a0a0] font-sans font-[450] leading-[1.85] text-[13.5px] sm:text-[15px] mb-8">
           I build full-stack web applications, mobile apps (React Native & Expo), and native desktop products end-to-end, obsessing over small details that make software feel right to use. Creator of{" "}
-          <a
-            href="https://pastily.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-200 hover:underline underline-offset-[2px] decoration-zinc-600 font-medium"
-          >
-            Pastily
-          </a>{" "}
-          built with Rust & Tauri. Currently engineering with{" "}
+          <span className="text-zinc-200 font-medium">Pastily</span>{" "}
+          (built with Rust & Tauri, sold in October). Now shipping more apps. Currently engineering with{" "}
           <a
             href="https://reactnative.dev/"
             target="_blank"
@@ -418,28 +326,10 @@ export default function Hero() {
               href="#product"
               className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-zinc-100 px-4 py-2 text-xs font-semibold text-zinc-950 shadow-sm transition hover:bg-white sm:w-auto sm:text-sm"
             >
-              <span>Explore Pastily</span>
+              <span>See My Apps</span>
               <ArrowRight className="size-3.5" />
             </motion.a>
 
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={copyEmail}
-              className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2 text-xs font-medium text-zinc-300 transition hover:border-zinc-700 hover:text-white sm:w-auto sm:text-sm cursor-pointer min-w-[140px]"
-            >
-              <Copy className="size-3.5 text-zinc-400 shrink-0" />
-              <span>
-                {copied ? (
-                  "Copied!"
-                ) : (
-                  <>
-                    <span className="hidden sm:inline">Copy Email (Press 'C')</span>
-                    <span className="sm:hidden">Copy Email</span>
-                  </>
-                )}
-              </span>
-            </motion.button>
           </div>
         </div>
       </motion.div>

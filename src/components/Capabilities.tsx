@@ -271,6 +271,8 @@ const mobileDesktopSkills: SkillItem[] = [
   { name: "Expo" },
   { name: "Tauri" },
   { name: "Rust" },
+  { name: "Swift" },
+  { name: "macOS Apps" },
   { name: "SvelteKit" },
   { name: "Cross-Platform" },
 ];
@@ -572,7 +574,7 @@ function MobileDesktopCard() {
           // Skill Chip Hover Reactive Overrides
           if (hoveredSkill) {
             const isMobileSkill = hoveredSkill === "React Native" || hoveredSkill === "Expo";
-            const isDesktopSkill = hoveredSkill === "Tauri" || hoveredSkill === "Rust";
+            const isDesktopSkill = hoveredSkill === "Tauri" || hoveredSkill === "Rust" || hoveredSkill === "Swift" || hoveredSkill === "macOS Apps";
             const isCrossSkill = hoveredSkill === "SvelteKit" || hoveredSkill === "Cross-Platform";
 
             if ((isMobileSkill && morphProgress < 0.5) || (isDesktopSkill && morphProgress >= 0.5) || isCrossSkill) {
@@ -682,7 +684,7 @@ function MobileDesktopCard() {
                 setHoveredSkill(skill.name);
                 if (skill.name === "React Native" || skill.name === "Expo") {
                   setDeviceMode("mobile");
-                } else if (skill.name === "Tauri" || skill.name === "Rust") {
+                } else if (skill.name === "Tauri" || skill.name === "Rust" || skill.name === "Swift" || skill.name === "macOS Apps") {
                   setDeviceMode("desktop");
                 }
               }}

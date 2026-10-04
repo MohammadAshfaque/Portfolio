@@ -2,29 +2,33 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 
 interface Product {
   name: string;
   tagline: string;
-  stack: string[];
-  logo: string;
-  href: string;
-  status: "Sold" | "Live";
+  stack?: string[];
+  logo?: string;
+  status: "Sold" | "Building";
 }
 
 const PRODUCTS: Product[] = [
   {
     name: "Pastily",
-    tagline: "Native clipboard manager for developers",
+    tagline: "Native clipboard manager. Started in July, sold in October.",
     stack: ["Tauri", "Rust", "SvelteKit"],
     logo: "/pastily-logo.png",
-    href: "https://pastily.app",
     status: "Sold",
+  },
+  {
+    name: "Next apps",
+    tagline: "More apps are in progress and shipping soon.",
+    status: "Building",
   },
 ];
 
 export default function Products() {
+  const sold = PRODUCTS.filter((p) => p.status === "Sold").length;
+
   return (
     <section id="product" className="mb-14">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
@@ -32,7 +36,7 @@ export default function Products() {
           Apps I've Built
         </h2>
         <span className="font-mono text-xs text-zinc-500">
-          {PRODUCTS.length.toString().padStart(2, "0")} shipped
+          {sold.toString().padStart(2, "0")} sold · more in progress
         </span>
       </div>
 
@@ -44,14 +48,10 @@ export default function Products() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: i * 0.05 }}
+            className="flex items-center gap-3.5 p-4 sm:gap-4 sm:p-5"
           >
-            <a
-              href={app.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3.5 p-4 transition-colors hover:bg-zinc-900/70 sm:gap-4 sm:p-5"
-            >
-              <div className="size-11 shrink-0 overflow-hidden rounded-xl border border-zinc-800/80 bg-zinc-900 p-0.5 sm:size-12">
+            <div className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800/80 bg-zinc-900 p-0.5 sm:size-12">
+              {app.logo ? (
                 <Image
                   src={app.logo}
                   alt={`${app.name} app icon`}
@@ -59,31 +59,31 @@ export default function Products() {
                   height={48}
                   className="h-full w-full rounded-[10px] object-contain"
                 />
-              </div>
+              ) : (
+                <span className="font-mono text-lg text-zinc-600">+</span>
+              )}
+            </div>
 
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="font-sans text-[15px] font-semibold tracking-tight text-[#f0f0f0]">
-                    {app.name}
-                  </h3>
-                  <span
-                    className={`rounded border px-1.5 py-0.5 font-mono text-[10px] ${
-                      app.status === "Sold"
-                        ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-                        : "border-zinc-700 bg-zinc-800/80 text-zinc-400"
-                    }`}
-                  >
-                    {app.status}
-                  </span>
-                </div>
-                <p className="mt-0.5 truncate font-sans text-xs text-[#b2b2b2] sm:text-[13px]">
-                  {app.tagline}
-                </p>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-sans text-[15px] font-semibold tracking-tight text-[#f0f0f0]">
+                  {app.name}
+                </h3>
+                <span
+                  className={`rounded border px-1.5 py-0.5 font-mono text-[10px] ${
+                    app.status === "Sold"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                      : "border-amber-500/30 bg-amber-500/10 text-amber-400"
+                  }`}
+                >
+                  {app.status}
+                </span>
+              </div>
+              <p className="mt-0.5 font-sans text-xs text-[#b2b2b2] sm:text-[13px]">{app.tagline}</p>
+              {app.stack && (
                 <p className="mt-1 font-mono text-[10px] text-zinc-500">{app.stack.join(" · ")}</p>
-              </div>
-
-              <ArrowUpRight className="size-4 shrink-0 text-zinc-600 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-200" />
-            </a>
+              )}
+            </div>
           </motion.li>
         ))}
       </ul>
