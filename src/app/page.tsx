@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import PastilySpotlight from "@/components/PastilySpotlight";
+import Products from "@/components/Products";
 import Experience from "@/components/Experience";
 import Capabilities from "@/components/Capabilities";
 import ShippingGraph from "@/components/ShippingGraph";
@@ -20,7 +20,7 @@ export default function Home() {
       <div className="relative z-10">
         <Header onOpenCmdK={() => setIsCmdOpen(true)} />
         <Hero />
-        <PastilySpotlight />
+        <Products />
         <Experience />
         <Capabilities />
         <ShippingGraph />
